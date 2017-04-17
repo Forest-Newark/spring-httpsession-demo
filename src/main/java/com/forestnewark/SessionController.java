@@ -40,7 +40,7 @@ public class SessionController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(HttpSession session, HttpServletResponse response, @RequestParam("inputEmail") String username,@RequestParam("inputPassword") String password){
+    public String login(Model model,HttpSession session, HttpServletResponse response, @RequestParam("inputEmail") String username,@RequestParam("inputPassword") String password){
 
 //        if(session.getAttribute("username").equals("admin") && session.getAttribute("password").equals("admin123")){
 //            model.addAttribute("admin",true);
@@ -48,7 +48,7 @@ public class SessionController {
 //            model.addAttribute("admin",false);
 //        }
 
-
+        model.addAttribute("isAdmin",false);
         if(!session.getAttribute("hasUserName").equals(true) && !session.getAttribute("hasPassword").equals(true)){
             Cookie cookieUsername = new Cookie("username", username);
             Cookie cookiePassword = new Cookie("password", password);
